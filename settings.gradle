@@ -1,0 +1,7 @@
+// Hotkeys test project
+include "Hotkeys"; project(":Hotkeys").projectDir = file(
+        "test-hotkeys"
+)
+
+// Project name
+rootProject.name = 'AutoOS-Tests'

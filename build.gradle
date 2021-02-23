@@ -1,0 +1,24 @@
+// Common properties of test subprojects
+subprojects {
+
+    apply plugin: 'application'
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+// Run Tasks
+
+task runAllTests() { /* Empty Task*/ }
+
+for (project in rootProject.subprojects) {
+    runAllTests.finalizedBy(project.run)
+}
+
+// Test subproject run tasks
+
+task testHotkeys() {
+    finalizedBy(project(":Hotkeys").run)
+}
