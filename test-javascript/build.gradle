@@ -26,5 +26,5 @@ group 'org.autoos.tests.javascript'
 mainClassName = "${group}.JavascriptTest"
 
 dependencies {
-    compile group: 'org.graalvm.js', name: 'js', version: '21.0.0'
+    compile group: 'org.graalvm.js', name: 'js', version: '21.0.0.2'
 }
