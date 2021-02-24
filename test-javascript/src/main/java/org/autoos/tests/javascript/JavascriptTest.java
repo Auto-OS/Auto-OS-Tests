@@ -22,10 +22,28 @@
  *  SOFTWARE.
  */
 
-group 'org.autoos.tests.hotkeys'
-mainClassName = "${group}.HotkeysTest"
+package org.autoos.tests.javascript;
 
-dependencies {
-    compile group: 'org.graalvm.js', name: 'js', version: '21.0.0'
-    compile group: 'com.1stleg', name: 'jnativehook', version: '2.0.2'
+import org.graalvm.polyglot.Context;
+import org.graalvm.polyglot.Value;
+
+public class JavascriptTest {
+
+    private static final Context JS_CONTEXT = Context.newBuilder("js")
+        .allowAllAccess(true).out(System.out).build();
+
+    private static final Value JS_BINDING = JS_CONTEXT.getBindings("js");
+
+    private JavascriptTest() {
+        //Setup
+    }
+
+    private void run() {
+        //Start
+    }
+
+    public static void main(String[] args) {
+        JavascriptTest test = new JavascriptTest();
+        test.run();
+    }
 }

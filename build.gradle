@@ -46,3 +46,7 @@ for (project in rootProject.subprojects) {
 task testHotkeys() {
     finalizedBy(project(":Hotkeys").run)
 }
+
+task testJavascript() {
+    finalizedBy(project(":Javascript").run)
+}

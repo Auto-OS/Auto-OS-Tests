@@ -22,10 +22,3 @@
  *  SOFTWARE.
  */
 
-group 'org.autoos.tests.hotkeys'
-mainClassName = "${group}.HotkeysTest"
-
-dependencies {
-    compile group: 'org.graalvm.js', name: 'js', version: '21.0.0'
-    compile group: 'com.1stleg', name: 'jnativehook', version: '2.0.2'
-}

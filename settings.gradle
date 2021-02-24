@@ -27,5 +27,10 @@ include "Hotkeys"; project(":Hotkeys").projectDir = file(
         "test-hotkeys"
 )
 
+// Javascript test project
+include "Javascript"; project(":Javascript").projectDir = file(
+        "test-javascript"
+)
+
 // Project name
 rootProject.name = 'Auto-OS Tests'
