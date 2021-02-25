@@ -22,28 +22,21 @@
  *  SOFTWARE.
  */
 
-const counter = new Counter();
-counter.decrement();
+class Counter {
 
-console.log(counter.getValue());
+    constructor() {
+        this.internalCounter = native_counter.newNativeCounter();
+    }
 
-let functionVariable = function() {
-    console.log("functionVariable has been called");
-}
+    getValue() {
+        return this.internalCounter.getCount();
+    }
 
-const counter1 = new Counter();
-console.log(counter1.getValue());
-counter1.increment()
-console.log(counter1.getValue());
+    increment() {
+        this.internalCounter.increment();
+    }
 
-function register(target) {
-    console.log("Target: " + target)
-}
-
-//@register
-const f = "f=22";
-
-//@register
-function e() {
-
+    decrement() {
+        this.internalCounter.decrement();
+    }
 }

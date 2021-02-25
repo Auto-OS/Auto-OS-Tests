@@ -22,28 +22,41 @@
  *  SOFTWARE.
  */
 
-const counter = new Counter();
-counter.decrement();
+package org.autoos.tests.javascript;
 
-console.log(counter.getValue());
+import org.graalvm.polyglot.HostAccess;
 
-let functionVariable = function() {
-    console.log("functionVariable has been called");
-}
+public class NativeCounter {
 
-const counter1 = new Counter();
-console.log(counter1.getValue());
-counter1.increment()
-console.log(counter1.getValue());
+    private int count;
 
-function register(target) {
-    console.log("Target: " + target)
-}
+    @HostAccess.Export
+    public NativeCounter newNativeCounter() {
+        return new NativeCounter();
+    }
 
-//@register
-const f = "f=22";
+    @HostAccess.Export()
+    public NativeCounter(int count){
+        this.count = count;
+    }
 
-//@register
-function e() {
+    @HostAccess.Export()
+    public NativeCounter() {
+        this.count = 0;
+    }
 
+    @HostAccess.Export()
+    public void increment() {
+        count++;
+    }
+
+    @HostAccess.Export()
+    public void decrement() {
+        count--;
+    }
+
+    @HostAccess.Export()
+    public int getCount() {
+        return count;
+    }
 }
