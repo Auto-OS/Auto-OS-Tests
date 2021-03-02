@@ -32,7 +32,54 @@
 //
 // })
 
+// if(false) {
+//     console.log("A")
+//     sleep(5000)
+//     console.log("B")
+//     sleep(2500)
+//     console.log("C")
+//     sleep(1000)
+//     console.log("D")
+//     sleep(500)
+//     console.log("E")
+//     sleep(100)
+//     console.log("F")
+//     sleep(10)
+//     console.log("G")
+// }
+
+// doLater(5000, async function() {
+//     console.log("Done later!")
+// })
+
+// $hotkeys.concurrently(async function() {
+//     console.log("Done concurrently!")
+// })
+
+function q(val) {val({'cc': 22, 'ee': 44})}
+
+q((info) => {
+    console.log(`Hi: ${info.ee}`)
+})
+
 console.log("hotkeys_test1.js")
 
 c = new key_event(25, 6)
-console.log("key=" + c.getKeyCode() + ", raw=" + c.getRawCode())
+console.log(`key=${c.getKeyCode()},raw=${c.getRawCode()}`)
+
+class _utils {
+
+    static utilA() {
+        return "A"
+    }
+
+    static utilB() {
+        return "B"
+    }
+}
+
+$hotkeys.requireUtils()
+
+optionalA.option()
+
+console.log(`Util: ${utils.utilB()}`)

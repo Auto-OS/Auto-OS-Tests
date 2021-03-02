@@ -22,37 +22,16 @@
  *  SOFTWARE.
  */
 
-package org.autoos.tests.hotkeys;
+class optionalA {
 
-import org.autoos.tests.hotkeys.plugin.HotkeysPlugin;
-import org.autoos.tests.hotkeys.script.JSEngine;
-import org.autoos.tests.hotkeys.script.JSScript;
-import org.autoos.tests.hotkeys.script.JSSource;
+    static val = "A";
 
-/**
- * The entry point for the Hotkeys test case.
- */
-public final class HotkeysTest {
-
-    public static final JSEngine engine = new JSEngine(new HotkeysPlugin());
-
-    private final JSSource source;
-
-    private HotkeysTest() throws Exception {
-        this.source = JSSource.getSourceFromArchivedFile("hotkeys_test1.js");
+    static option() {
+        console.log(`optional():${this.val}`)
     }
 
-    private void run() throws Exception {
-        JSScript script = engine.parseSource(source);
-        script.execute();
-    }
+}
 
-    public static void main(String[] args) {
-        try {
-            HotkeysTest test = new HotkeysTest();
-            test.run();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+class optionalB extends optionalA {
+    static val = "B"
 }

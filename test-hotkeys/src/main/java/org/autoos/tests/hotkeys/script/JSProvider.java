@@ -24,7 +24,14 @@
 
 package org.autoos.tests.hotkeys.script;
 
+import org.graalvm.polyglot.HostAccess;
+
 public interface JSProvider {
+
+    @HostAccess.Export
+    default void quit(){
+        System.out.println("quit():original");
+    }
 
     String getName();
 }

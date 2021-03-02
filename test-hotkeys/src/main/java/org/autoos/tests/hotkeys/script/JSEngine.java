@@ -31,9 +31,9 @@ import java.io.IOException;
 
 public class JSEngine {
 
-    private final Context context;
+    public final Context context;
 
-    private final Value bindings;
+    public final Value bindings;
 
     public JSEngine(JSPlugin... plugins) {
         this.context = Context.newBuilder("js").out(System.out).build();

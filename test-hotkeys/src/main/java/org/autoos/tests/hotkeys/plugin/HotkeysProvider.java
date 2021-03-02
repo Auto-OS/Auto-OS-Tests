@@ -24,9 +24,13 @@
 
 package org.autoos.tests.hotkeys.plugin;
 
+import org.autoos.tests.hotkeys.HotkeysTest;
 import org.autoos.tests.hotkeys.script.JSProvider;
+import org.autoos.tests.hotkeys.script.JSSource;
 import org.graalvm.polyglot.HostAccess;
 import org.graalvm.polyglot.Value;
+
+import java.io.IOException;
 
 public class HotkeysProvider implements JSProvider {
 
@@ -41,6 +45,39 @@ public class HotkeysProvider implements JSProvider {
         for(int i = 0; i < keys.getArraySize(); i++) {
             System.out.println("Element '" + i + "': " + keys.getArrayElement(i));
         }
+    }
+
+    @HostAccess.Export
+    public void sleep(long time) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            throw new IllegalStateException("Cannot sleep");
+        }
+    }
+
+    /**
+     * @throws IllegalStateException always throws an {@link IllegalStateException}
+     * due to concurrent execution from multiple threads.
+     */
+    @HostAccess.Export
+    public void doLater(long time, Value callback) {
+        sleep(time);
+        Thread doLater = new Thread("Do-Later-Thread") {
+            @Override
+            public void run() {
+                callback.execute();
+            }
+        };
+        doLater.setDaemon(true);
+        doLater.start();
+    }
+
+    @HostAccess.Export
+    public void requireUtils() throws IOException {
+        HotkeysTest.engine.parseSource(JSSource.getSourceFromArchivedFile("libraries/optional.js")).execute();
+        Value utilsClass = HotkeysTest.engine.bindings.getMember("_utils");
+        HotkeysTest.engine.bindings.putMember("utils", utilsClass);
     }
 
     @Override

@@ -28,7 +28,6 @@ import org.autoos.tests.hotkeys.script.JSPlugin;
 import org.autoos.tests.hotkeys.script.JSProvider;
 import org.autoos.tests.hotkeys.script.JSSource;
 import org.jnativehook.GlobalScreen;
-import org.jnativehook.NativeHookException;
 
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -47,11 +46,11 @@ public class HotkeysPlugin extends JSPlugin {
             Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
             logger.setLevel(Level.OFF);
 
-            org.jnativehook.GlobalScreen.registerNativeHook();
+            //org.jnativehook.GlobalScreen.registerNativeHook();
             GlobalScreen.addNativeKeyListener(new GlobalKeyListener());
             GlobalScreen.addNativeKeyListener(new GlobalKeyListener());
             GlobalScreen.addNativeKeyListener(new GlobalKeyListener());
-        } catch (NativeHookException e) {
+        } catch (Exception e) {
             System.err.println("Failed to register global native hook.");
             e.printStackTrace();
         }

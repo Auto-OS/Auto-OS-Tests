@@ -25,3 +25,11 @@
 function registerHotkey(keys, action) {
 
 }
+
+function sleep(time) {
+    $hotkeys.sleep(time)
+}
+
+function doLater(time, callback) {
+    $hotkeys.doLater(time, callback)
+}
