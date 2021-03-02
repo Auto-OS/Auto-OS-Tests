@@ -83,3 +83,10 @@ $hotkeys.requireUtils()
 optionalA.option()
 
 console.log(`Util: ${utils.utilB()}`)
+
+$hotkeys.testCallback(() => {
+
+})
+
+//$hotkeys.exception()
+error()

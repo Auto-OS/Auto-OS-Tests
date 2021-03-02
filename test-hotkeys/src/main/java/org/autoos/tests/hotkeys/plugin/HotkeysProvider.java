@@ -80,8 +80,23 @@ public class HotkeysProvider implements JSProvider {
         HotkeysTest.engine.bindings.putMember("utils", utilsClass);
     }
 
+    @HostAccess.Export
+    public void testCallback(Runnable callback) {
+        System.out.println(callback.getClass().getSuperclass().getCanonicalName());
+    }
+
+    @HostAccess.Export
+    public void exception() {
+        throw new IllegalStateException("exception()");
+    }
+
     @Override
     public String getName() {
         return "$hotkeys";
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }

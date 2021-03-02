@@ -35,3 +35,7 @@ class optionalA {
 class optionalB extends optionalA {
     static val = "B"
 }
+
+function error() {
+    throw Error("error()")
+}
