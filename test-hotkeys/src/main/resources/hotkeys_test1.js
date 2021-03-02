@@ -56,19 +56,25 @@
 //     console.log("Done concurrently!")
 // })
 
-function q(val) {val({'cc': 22, 'ee': 44})}
+function q(val) {
+    val({
+        'cc': 22, 'ee': 44
+    })
+}
 
 q((info) => {
     console.log(`Hi: ${info.ee}`)
 })
 
+
 console.log("hotkeys_test1.js")
+
 
 c = new key_event(25, 6)
 console.log(`key=${c.getKeyCode()},raw=${c.getRawCode()}`)
 
-class _utils {
 
+class _utils {
     static utilA() {
         return "A"
     }
@@ -78,15 +84,25 @@ class _utils {
     }
 }
 
-$hotkeys.requireUtils()
 
+if($hotkeys === undefined) $hotkeys = {
+    "textifyCallback": (callback) => {}, "requireUtils": () => {}
+}
+
+
+$hotkeys.requireUtils()
+console.log(`Util: ${utils.utilB()}`)
 optionalA.option()
 
-console.log(`Util: ${utils.utilB()}`)
 
-$hotkeys.testCallback(() => {
+$hotkeys.textifyCallback(
+    callback = (arg1, arg2) => {
+        console.log(`10 + 10 = ${10 + 10}`)
 
-})
+        console.log(arg1)
+        console.log(arg2)
+    }
+)
 
 //$hotkeys.exception()
-error()
+//error()
