@@ -22,37 +22,25 @@
  *  SOFTWARE.
  */
 
-package org.autoos.tests.hotkeys;
+package org.autoos.tests.hotkeys.script;
 
-import org.autoos.tests.hotkeys.plugin.HotkeysPlugin;
-import org.autoos.tests.hotkeys.script.JSEngine;
-import org.autoos.tests.hotkeys.script.JSScript;
-import org.autoos.tests.hotkeys.script.JSSource;
+public abstract class JSPlugin {
 
-/**
- * The entry point for the Hotkeys test case.
- */
-public final class HotkeysTest {
+    private final String name;
 
-    private final JSEngine engine = new JSEngine(new HotkeysPlugin());
-
-    private final JSSource source;
-
-    private HotkeysTest() throws Exception {
-        this.source = JSSource.getSourceFromArchivedFile("hotkeys_test1.js");
+    public JSPlugin(String name) {
+        this.name = name;
     }
 
-    private void run() throws Exception {
-        JSScript script = engine.parseSource(source);
-        script.execute();
+    public String getPluginName() {
+        return this.name;
     }
 
-    public static void main(String[] args) {
-        try {
-            HotkeysTest test = new HotkeysTest();
-            test.run();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    protected abstract void initialize();
+
+    protected abstract JSProvider[] getProviders();
+
+    protected abstract JSSource[] getLibrarySources() throws Exception;
+
+    protected abstract JSSource[] getStandardLibrarySources() throws Exception;
 }

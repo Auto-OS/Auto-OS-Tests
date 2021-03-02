@@ -22,37 +22,29 @@
  *  SOFTWARE.
  */
 
-package org.autoos.tests.hotkeys;
+package org.autoos.tests.hotkeys.plugin;
 
-import org.autoos.tests.hotkeys.plugin.HotkeysPlugin;
-import org.autoos.tests.hotkeys.script.JSEngine;
-import org.autoos.tests.hotkeys.script.JSScript;
-import org.autoos.tests.hotkeys.script.JSSource;
+import org.jnativehook.keyboard.NativeKeyEvent;
+import org.jnativehook.keyboard.NativeKeyListener;
 
-/**
- * The entry point for the Hotkeys test case.
- */
-public final class HotkeysTest {
+public class GlobalKeyListener implements NativeKeyListener {
 
-    private final JSEngine engine = new JSEngine(new HotkeysPlugin());
-
-    private final JSSource source;
-
-    private HotkeysTest() throws Exception {
-        this.source = JSSource.getSourceFromArchivedFile("hotkeys_test1.js");
+    @Override
+    public void nativeKeyPressed(NativeKeyEvent nativeKeyEvent) {
+        System.out.printf("KEY-DOWN(char=%s, code=%s, raw=%s, thread=%s)\n",
+                nativeKeyEvent.getKeyChar(), nativeKeyEvent.getKeyCode(),
+                nativeKeyEvent.getRawCode(), Thread.currentThread().getName()
+        );
     }
 
-    private void run() throws Exception {
-        JSScript script = engine.parseSource(source);
-        script.execute();
+    @Override
+    public void nativeKeyReleased(NativeKeyEvent nativeKeyEvent) {
+        System.out.printf("KEY-UP(char=%s, code=%s, raw=%s, thread=%s)\n",
+                nativeKeyEvent.getKeyChar(), nativeKeyEvent.getKeyCode(),
+                nativeKeyEvent.getRawCode(), Thread.currentThread().getName()
+        );
     }
 
-    public static void main(String[] args) {
-        try {
-            HotkeysTest test = new HotkeysTest();
-            test.run();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    @Override
+    public void nativeKeyTyped(NativeKeyEvent nativeKeyEvent) {}
 }

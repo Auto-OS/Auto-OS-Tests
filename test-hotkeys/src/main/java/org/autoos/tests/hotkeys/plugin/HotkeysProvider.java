@@ -22,37 +22,29 @@
  *  SOFTWARE.
  */
 
-package org.autoos.tests.hotkeys;
+package org.autoos.tests.hotkeys.plugin;
 
-import org.autoos.tests.hotkeys.plugin.HotkeysPlugin;
-import org.autoos.tests.hotkeys.script.JSEngine;
-import org.autoos.tests.hotkeys.script.JSScript;
-import org.autoos.tests.hotkeys.script.JSSource;
+import org.autoos.tests.hotkeys.script.JSProvider;
+import org.graalvm.polyglot.HostAccess;
+import org.graalvm.polyglot.Value;
 
-/**
- * The entry point for the Hotkeys test case.
- */
-public final class HotkeysTest {
+public class HotkeysProvider implements JSProvider {
 
-    private final JSEngine engine = new JSEngine(new HotkeysPlugin());
+    @HostAccess.Export()
+    public void registerHotkey(Value keys, Value callback) {
+        if(!callback.canExecute())
+            throw new IllegalArgumentException("Must provide a callback!");
 
-    private final JSSource source;
+        if(!keys.hasArrayElements())
+            throw new IllegalArgumentException("No keys");
 
-    private HotkeysTest() throws Exception {
-        this.source = JSSource.getSourceFromArchivedFile("hotkeys_test1.js");
-    }
-
-    private void run() throws Exception {
-        JSScript script = engine.parseSource(source);
-        script.execute();
-    }
-
-    public static void main(String[] args) {
-        try {
-            HotkeysTest test = new HotkeysTest();
-            test.run();
-        } catch (Exception e) {
-            e.printStackTrace();
+        for(int i = 0; i < keys.getArraySize(); i++) {
+            System.out.println("Element '" + i + "': " + keys.getArrayElement(i));
         }
+    }
+
+    @Override
+    public String getName() {
+        return "$hotkeys";
     }
 }

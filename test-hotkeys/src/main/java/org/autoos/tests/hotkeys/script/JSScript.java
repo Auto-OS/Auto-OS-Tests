@@ -22,37 +22,27 @@
  *  SOFTWARE.
  */
 
-package org.autoos.tests.hotkeys;
+package org.autoos.tests.hotkeys.script;
 
-import org.autoos.tests.hotkeys.plugin.HotkeysPlugin;
-import org.autoos.tests.hotkeys.script.JSEngine;
-import org.autoos.tests.hotkeys.script.JSScript;
-import org.autoos.tests.hotkeys.script.JSSource;
+import org.graalvm.polyglot.Value;
 
-/**
- * The entry point for the Hotkeys test case.
- */
-public final class HotkeysTest {
+public class JSScript {
 
-    private final JSEngine engine = new JSEngine(new HotkeysPlugin());
+    private final Value script;
 
-    private final JSSource source;
+    private final Value bindings;
 
-    private HotkeysTest() throws Exception {
-        this.source = JSSource.getSourceFromArchivedFile("hotkeys_test1.js");
+    protected JSScript(Value parsedSource, Value bindings){
+        this.script = parsedSource;
+        this.bindings = bindings;
     }
 
-    private void run() throws Exception {
-        JSScript script = engine.parseSource(source);
-        script.execute();
+    public Value getMember(String memberName) {
+        return bindings.getMember(memberName);
     }
 
-    public static void main(String[] args) {
-        try {
-            HotkeysTest test = new HotkeysTest();
-            test.run();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    @SuppressWarnings("UnusedReturnValue")
+    public Value execute() {
+        return script.execute();
     }
 }

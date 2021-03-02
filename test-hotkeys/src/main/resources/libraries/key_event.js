@@ -22,37 +22,19 @@
  *  SOFTWARE.
  */
 
-package org.autoos.tests.hotkeys;
+class key_event {
 
-import org.autoos.tests.hotkeys.plugin.HotkeysPlugin;
-import org.autoos.tests.hotkeys.script.JSEngine;
-import org.autoos.tests.hotkeys.script.JSScript;
-import org.autoos.tests.hotkeys.script.JSSource;
-
-/**
- * The entry point for the Hotkeys test case.
- */
-public final class HotkeysTest {
-
-    private final JSEngine engine = new JSEngine(new HotkeysPlugin());
-
-    private final JSSource source;
-
-    private HotkeysTest() throws Exception {
-        this.source = JSSource.getSourceFromArchivedFile("hotkeys_test1.js");
+    constructor(keyCode, rawCode) {
+        this.keyCode = keyCode
+        this.rawCode = rawCode
     }
 
-    private void run() throws Exception {
-        JSScript script = engine.parseSource(source);
-        script.execute();
+    getKeyCode() {
+        return this.keyCode;
     }
 
-    public static void main(String[] args) {
-        try {
-            HotkeysTest test = new HotkeysTest();
-            test.run();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    getRawCode() {
+        return this.rawCode;
     }
+
 }
