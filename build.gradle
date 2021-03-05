@@ -24,7 +24,6 @@
 
 // Common properties of test subprojects
 subprojects {
-
     apply plugin: 'application'
     apply plugin: 'java'
 
@@ -37,20 +36,12 @@ subprojects {
     }
 }
 
-// Run Tasks
+// Run All Task
 
-task runAllTests() { /* Empty Task*/ }
+task runAll() {
+    /* Empty Task*/
+}
 
 for (project in rootProject.subprojects) {
-    runAllTests.finalizedBy(project.run)
-}
-
-// Test subproject run tasks
-
-task testHotkeys() {
-    finalizedBy(project(":Hotkeys").run)
-}
-
-task testJavascript() {
-    finalizedBy(project(":Javascript").run)
+    runAll.finalizedBy(project.run)
 }
