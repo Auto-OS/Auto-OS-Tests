@@ -22,8 +22,7 @@
  *  SOFTWARE.
  */
 
-group 'org.autoos.tests.javascript'
-mainClassName = "${group}.JavascriptTest"
+groupAndMain('org.autoos.tests.javascript', 'JavascriptTest')
 
 dependencies {
     compile group: 'org.graalvm.js', name: 'js', version: '21.0.0.2'

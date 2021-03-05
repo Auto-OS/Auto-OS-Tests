@@ -22,15 +22,16 @@
  *  SOFTWARE.
  */
 
-// Hotkeys test project
-include "Hotkeys"; project(":Hotkeys").projectDir = file(
-        "test-hotkeys"
-)
+/**
+ * Includes and names a subproject and its source directory.
+ */
+def include(name, source) {
+    include name; project(":${name}").projectDir = file(source)
+}
 
-// Javascript test project
-include "Javascript"; project(":Javascript").projectDir = file(
-        "test-javascript"
-)
+include("Hotkeys", "test-hotkeys")
+include("Javascript", "test-javascript")
+include("Plugins", "test-plugins")
 
 // Project name
 rootProject.name = 'Auto-OS Tests'

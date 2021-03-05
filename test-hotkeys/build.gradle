@@ -22,8 +22,7 @@
  *  SOFTWARE.
  */
 
-group 'org.autoos.tests.hotkeys'
-mainClassName = "${group}.HotkeysTest"
+groupAndMain('org.autoos.tests.hotkeys', 'HotkeysTest')
 
 dependencies {
     compile group: 'org.graalvm.js', name: 'js', version: '21.0.0.2'
