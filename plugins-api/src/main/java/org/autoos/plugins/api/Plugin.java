@@ -22,28 +22,38 @@
  *  SOFTWARE.
  */
 
-// Common properties of test subprojects
-subprojects {
-    apply plugin: 'application'
-    apply plugin: 'java'
+package org.autoos.plugins.api;
 
-    repositories {
-        mavenCentral()
+public abstract class Plugin<T> {
+
+    private final String id;
+
+    private final String version;
+
+    private final Class<T> pluginTypeClass;
+
+    public Plugin(String id, String version, Class<T> pluginTypeClass) {
+        this.id = id;
+        this.version = version;
+        this.pluginTypeClass = pluginTypeClass;
     }
 
-    ext.groupAndMain = {String group, String main ->
-        mainClassName = "${this.group = group}.${main}"
+    public abstract T load();
+
+    public String getId() {
+        return id;
     }
 
-    run.dependsOn(build)
-}
+    public String getVersion() {
+        return version;
+    }
 
-// Run All Task
+    public Class<T> getPluginTypeClass() {
+        return pluginTypeClass;
+    }
 
-task runAll() {
-    /* Empty Task*/
-}
-
-for (project in rootProject.subprojects) {
-    runAll.finalizedBy(project.run)
+    @Override
+    public String toString() {
+        return String.format("Plugin[%s:%s]", id, version);
+    }
 }

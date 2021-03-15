@@ -24,9 +24,14 @@
 
 package org.autoos.tests.plugins;
 
+import org.autoos.plugins.PluginLoader;
+
+import java.io.File;
+
 public class PluginsTest {
 
-    public static void main(String[] args){
-        System.out.println(PluginsTest.class.getCanonicalName() + "!");
+    public static void main(String[] args) throws Exception {
+        PluginLoader loader = new PluginLoader(new File("D:\\Projects\\Auto-OS\\Auto-OS-Tests\\test-plugins\\plugins"));
+        loader.load();
     }
 }

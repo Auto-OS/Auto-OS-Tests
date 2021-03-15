@@ -1,7 +1,5 @@
-groupAndMain("org.autoos.tests.plugins", "PluginsTest")
 
 dependencies {
-    implementation project(':Plugins')
     implementation project(':PluginsAPI')
 
     compile group: 'org.graalvm.js', name: 'js', version: '21.0.0.2'

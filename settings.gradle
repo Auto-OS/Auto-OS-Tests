@@ -31,7 +31,11 @@ def include(name, source) {
 
 include("Hotkeys", "test-hotkeys")
 include("Javascript", "test-javascript")
-include("Plugins", "test-plugins")
+include("PluginsT1", "test-plugins")
+include("Plugins", "plugins")
+include("PluginsAPI", "plugins-api")
+include("TestPlugin1", "test-plugin1")
 
 // Project name
 rootProject.name = 'Auto-OS Tests'
+

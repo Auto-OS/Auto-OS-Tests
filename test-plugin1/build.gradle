@@ -1,9 +1,14 @@
-groupAndMain("org.autoos.tests.plugins", "PluginsTest")
-
 dependencies {
-    implementation project(':Plugins')
     implementation project(':PluginsAPI')
 
     compile group: 'org.graalvm.js', name: 'js', version: '21.0.0.2'
     compile group: 'com.1stleg', name: 'jnativehook', version: '2.0.2'
+}
+
+jar {
+    manifest {
+        attributes([
+                "Plugin-Class": "org.autoos.tests.plugin1.TestPlugin1"
+        ])
+    }
 }
