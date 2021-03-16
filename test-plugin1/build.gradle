@@ -1,8 +1,5 @@
 dependencies {
     implementation project(':PluginsAPI')
-
-    compile group: 'org.graalvm.js', name: 'js', version: '21.0.0.2'
-    compile group: 'com.1stleg', name: 'jnativehook', version: '2.0.2'
 }
 
 jar {
