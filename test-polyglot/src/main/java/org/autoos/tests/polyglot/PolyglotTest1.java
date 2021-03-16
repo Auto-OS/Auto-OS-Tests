@@ -22,21 +22,11 @@
  *  SOFTWARE.
  */
 
-/**
- * Includes and names a subproject and its source directory.
- */
-def include(name, source) {
-    include name; project(":${name}").projectDir = file(source)
+package org.autoos.tests.polyglot;
+
+public class PolyglotTest1 {
+
+    public static void main(String[] args) {
+        System.out.println("Hi! from PolyglotTest1.java");
+    }
 }
-
-include("Hotkeys", "test-hotkeys")
-include("Javascript", "test-javascript")
-include("PluginsT1", "test-plugins")
-include("Plugins", "plugins")
-include("PluginsAPI", "plugins-api")
-include("TestPlugin1", "test-plugin1")
-include("PolyglotT1", "test-polyglot")
-
-// Project name
-rootProject.name = 'Auto-OS Tests'
-
