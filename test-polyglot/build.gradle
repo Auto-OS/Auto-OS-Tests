@@ -1,5 +1,0 @@
-groupAndMain("org.autoos.tests.polyglot", "PolyglotTest1")
-
-dependencies {
-    compile group: 'org.graalvm.js', name: 'js', version: '21.0.0.2'
-}
