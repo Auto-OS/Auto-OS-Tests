@@ -106,3 +106,6 @@ $hotkeys.textifyCallback(
 
 //$hotkeys.exception()
 //error()
+
+$hotkeys.analyze({"a": "A", "b": "B", "1": 1, "-": [1,2,3,4,5]})
+

@@ -92,6 +92,15 @@ public class HotkeysProvider implements JSProvider {
         throw new IllegalStateException("exception()");
     }
 
+    @HostAccess.Export
+    public void analyze(Value val) {
+        System.out.println("Analyze:");
+        System.out.println("\tValue = " + val);
+        System.out.println("Value Type = " + val.getClass().getCanonicalName());
+        System.out.println("Value has elements = " + val.hasArrayElements());
+        System.out.println("Value has members = " + val.hasMembers());
+    }
+
     /**
      * Alternative attempt at executing Javascript callback functions
      * across many concurrently executing threads.
